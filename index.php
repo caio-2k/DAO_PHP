@@ -18,7 +18,7 @@ require_once("./config.php");
 // echo $root; //Por ser um objeto vai chamar o toString e gerar um JSON
 
 //Carrega uma lista de usuários
-//Static não precisa instanciar
+//metodos static não precisa instanciar
 // $lista = Usuario::getList();
 // echo json_encode($lista);
 
@@ -32,29 +32,21 @@ require_once("./config.php");
 // $usuario->login("root", "!@#$");
 // echo $usuario;
 
-/*
 //Criando um novo usuário
-$aluno = new Usuario("aluno", "@lun0");
-$aluno->insert();
-echo $aluno;
-*/
-/*
+// $aluno = new Usuario("aluno", "@lun0");
+// $aluno->insert();
+// echo $aluno; //O procedure vai retornar o id e a data de cadastro
 
-//Alterar um usuário
-$usuario = new Usuario();
-
-$usuario->loadById(8);
-
-$usuario->update("professor", "!@#$%¨&*");
-
-echo $usuario;
-*/
-
+// Alterar um usuário
 // $usuario = new Usuario();
-
-// $usuario->loadById(7);
-
-// $usuario->delete();
-
+// $usuario->loadById(4);
+// $usuario->update("professor", "!@#$%¨&*");
 // echo $usuario;
- ?>
+
+//Deletando Usuário
+// $usuario = new Usuario();
+// $usuario->loadById(6);
+// $usuario->delete();
+// echo $usuario;
+
+?>

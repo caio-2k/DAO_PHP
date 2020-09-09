@@ -111,6 +111,7 @@ class Usuario {
 
 	public function setData($data){
 
+		//4 setters (os dados)
 		$this->setIdusuario($data['idusuario']);
 		$this->setDeslogin($data['deslogin']);
 		$this->setdesenha($data['desenha']);
@@ -121,7 +122,9 @@ class Usuario {
 	public function insert(){
 
 		$sql = new Sql();
-
+		//utilizando mysql procedure
+		//chamamos a procedure com a palavra call e usa parenteses inserimos os dados
+		//com SQL server é execute
 		$results = $sql->select("CALL sp_usuarios_insert(:LOGIN, :PASSWORD)", array(
 			':LOGIN'=>$this->getDeslogin(),
 			':PASSWORD'=>$this->getdesenha()
@@ -135,6 +138,7 @@ class Usuario {
 
 	public function update($login, $password){
 
+		//Definindo as variáveis do parametro
 		$this->setDeslogin($login);
 		$this->setdesenha($password);
 
@@ -150,12 +154,14 @@ class Usuario {
 
 	public function delete(){
 
+		//Instância do DB
 		$sql = new Sql();
 
 		$sql->query("DELETE FROM tb_usuarios WHERE idusuario = :ID", array(
 			':ID'=>$this->getIdusuario()
 		));
 
+		//Limpando os campos do BD
 		$this->setIdusuario(0);
 		$this->setDeslogin("");
 		$this->setdesenha("");
@@ -163,6 +169,7 @@ class Usuario {
 
 	}
 
+	//Construtor para inserir um novo usuário na hora da instância
 	public function __construct($login = "", $password = ""){
 
 		$this->setDeslogin($login);
