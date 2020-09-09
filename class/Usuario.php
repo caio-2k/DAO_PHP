@@ -39,6 +39,7 @@ class Usuario {
 		$this->dtcadastro = $value;
 	}
 	
+	//Função para retornar um usuário pelo seu ID (pasasdo por parametro)
 	public function loadById($id){
 
 		$sql = new Sql();
@@ -60,18 +61,26 @@ class Usuario {
 
 	}
 
+	//Retornando todos os usuários do banco de dados
+	//Por não possuir this em sua estrutura podemos transforma-lo em um método
+	//estático e assim portanto não precisamos instanciar o objeto
+	//posso chamar usuário direto com o método (Usuario::getList())
 	public static function getList(){
 
 		$sql = new Sql();
 
+		//Utilizando a função select e ordenando por login (assim então, listando)
 		return $sql->select("SELECT * FROM tb_usuarios ORDER BY deslogin;");
 
 	}
 
+	//Buscar usuário pelo login
 	public static function search($login){
 
 		$sql = new Sql();
 
+		//Vai pegar oque eu digitar dentro da variável login e quando enviado para o param pra evitar sql
+		//injection é aclasse que vai adicionar a aspas simples
 		return $sql->select("SELECT * FROM tb_usuarios WHERE deslogin LIKE :SEARCH ORDER BY deslogin", array(
 			':SEARCH'=>"%".$login."%"
 		));
@@ -93,6 +102,7 @@ class Usuario {
 
 		} else {
 
+			//Estourando uma exceção
 			throw new Exception("Login e/ou senha inválidos.");
 
 		}
